@@ -1,52 +1,53 @@
+"use strict";
+let bodyEl = document.getElementById('body');
+let listEl = document.getElementsByClassName('usersList');
+
 function User(firstName, lastName, regDate) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.regDate = regDate;
-}
+};
 
-function UserList(user) {
+function UserList(obj) {
   this.users = [];
-
-  this.addUser = function(user) {
-    this.users.push(user);
-  }
-
+  this.usersAdd = function(obj) {
+    this.users.push(obj);
+  };
   this.getAllUsers = function() {
-    this.users.forEach(function(item, i) {
-      var fullUserRegInfo = ['User' + (i + 1)];
-      console.log(fullUserRegInfo);
-      for (var key in item) {
-        fullUserRegInfo.push(key + ': ' + item[key]);
-      }
-      console.log(fullUserRegInfo.join(', '));
-    });
-  }
-}
+    for (let key in this.users) {
+      let fullUserRegInfo = ['User'];
+      fullUserRegInfo.push(+key + 1 + ':');
 
-var users = new UserList();
+      let obj = this.users[key];
+      for (let prop in obj) {
+        fullUserRegInfo.push(obj[prop]);
+      };
+
+      let listItemEl = document.createElement('li');
+      listItemEl.textContent = fullUserRegInfo.join(' ') + ';';
+      listEl[0].appendChild(listItemEl);
+    };
+  };
+};
 
 function regNewUser() {
-  var newUser = prompt('Введите ваше имя и фамилию', 'одной строкой, через пробел');
+  let fullName = prompt('Введите ваши имя и фамилию через пробел', 'Андрей Дворцов');
 
-  if (newUser === null) {
-    users.getAllUsers();
+  if (fullName === null) {
+    usersList.getAllUsers();
     return;
-  } else if (newUser.trim() == '') {
-    alert('Введена пустая строка. Повторите ввод');
-    return regNewUser();
-  } else if (newUser.trim().split(' ').length != 2) {
-    alert('Некорректно введены данные. Пожалуйста повторите ввод');
+  } else if (fullName.trim() == '') {
     return regNewUser();
   } else {
-    var userInfo = newUser.trim().split(' ');
+    let userInfo = fullName.trim().split(' ');
+    let user = new User(userInfo[0], userInfo[1], printDayInfo());
 
-    var date = printDayInfo();
-    var user = new User(userInfo[0], userInfo[1].trim(), date);
-
-    users.addUser(user);
+    usersList.usersAdd(user);
 
     return regNewUser();
-  }
-}
+  };
+};
+
+let usersList = new UserList();
 
 regNewUser();
