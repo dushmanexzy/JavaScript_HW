@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+
+  font-size: 24px;
+
+  background-color: #fff;
+}
+
+.btn {
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+
+  background-color: #fff;
+}
+
+.container {
+  margin: 0 auto;
+
+  width: 1000px;
+}
+
+.deals__title {
+  text-align: center;
+  border-bottom: 4px solid black;
+}
+
+.deals__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-top: 100px;
+  padding: 40px 30px;
+
+  border: 3px solid grey;
+
+  background-color: #6b91cf;
+}
+
+.deals__list--title {
+  margin: 0;
+  padding: 10px;
+  text-decoration: underline;
+}
+
+.deals__control input {
+  width: 70%;
+
+  margin-top: 20px;
+  padding: 5px 10px;
+
+  font-size: 18px;
+
+  border: 2px solid grey;
+}
+
+.deals__btn {
+  margin-top: 40px;
+
+  width: 200px;
+  height: 40px;
+
+  font-size: 18px;
+
+  border: 2px solid grey;
+  border-radius: 20px;
+
+  background-color: rgba(255, 255, 255, 0.493);
+}
+
+.deals__item {
+  cursor: pointer;
+}
+
+.checked {
+  text-decoration: line-through;
+}
