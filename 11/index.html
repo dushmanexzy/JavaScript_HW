@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web API</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JS -->
+  <script src="common.js" defer></script>
+</head>
+
+<body>
+  <main class="api">
+    <div class="container api__container">
+      <h1 class="api__title">Web API Yandex.Translate</h1>
+
+      <form class="api__form form" method="get">
+        <label class="form__label" for="word">Введите слово для перевода: <br>
+          <input class="form__input" id="word" type="text" name="word">
+        </label>
+
+        <fieldset class="form-select-block">
+          <legend>Выбор языка:</legend>
+          <select 
+            id="startLang" 
+            class="form-select select__start-lang" 
+            name="startLang" required>
+            <option value="0" hidden>Выберите исходный язык:</option>
+            <option value="ru">ru</option>
+            <option value="en">en</option>
+            <option value="es">es</option>
+            <option value="uz">uz</option>
+            <option value="uk">uk</option>
+          </select>
+
+          <select 
+            id="endLang" 
+            class="form-select select__end-lang" 
+            name="endLang" required>
+            <option value="0" hidden>Выберите язык результата перевода:</option>
+            <option value="ru">ru</option>
+            <option value="en">en</option>
+            <option value="es">es</option>
+            <option value="uz">uz</option>
+            <option value="uk">uk</option>
+          </select>
+        </fieldset>
+
+        <button class="btn form__btn" type="submit">Перевести</button>
+      </form>
+    </div>
+  </main>
+</body>
+
+</html>

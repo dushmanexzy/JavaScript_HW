@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  padding: 0;
+
+  text-align: left;
+  font-size: 20px;
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #000;
+
+  background-color: #fbfbfb;
+
+  box-sizing: border-box;
+}
+
+.container {
+  width: 1000px;
+
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.api__container {
+  padding: 100px 0;
+}
+
+.api__title {
+  text-align: center;
+
+  font-size: 50px;
+  font-weight: 700;
+
+  margin-bottom: 80px;
+
+  border-bottom: 5px solid #000;
+}
+
+.api__form {
+  width: 70%;
+
+  margin: 0 auto;
+  padding: 20px 40px;
+
+  border: 3px solid grey;
+}
+
+.form__label {
+  padding: 10px;
+  text-decoration: underline;
+}
+
+.form__input {
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  width: 300px;
+  height: 20px;
+
+  border: 2px solid blue;
+}
+
+.form-select-block {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 40px;
+}
+
+.form-select {
+  width: 250px;
+
+  padding: 5px 10px;
+
+  font-size: 14px;
+
+  border: 2px solid blue;
+}
+
+.form-select:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.form__btn {
+  display: block;
+
+  margin: 0 auto;
+  padding: 0;
+
+  width: 300px;
+  height: 40px;
+
+  font-size: 24px;
+  color: grey;
+
+  border: 2px solid blue;
+  border-radius: 40px;
+
+  background-color: aqua;
+}
