@@ -10,7 +10,7 @@ function getLangValue(str) {
 function rebootLangValue(str) {
   let defaultIndex = 0;
   let defaultValue = document.querySelector(str).options[defaultIndex].value;
-  document.querySelector(str).value = defaultValue; 
+  document.querySelector(str).value = defaultValue;
 }
 
 var btn = document.querySelector('button');
@@ -29,7 +29,7 @@ btn.addEventListener('click', function (ev) {
   url += '&lang=' + getLangValue('#startLang') + '-' + getLangValue('#endLang');
 
   req.onload = function () {
-    var response = JSON.parse(req.response);    
+    var response = JSON.parse(req.response);
 
     if (response.code !== 200) {
       alert('Произошла ошибка при получении ответа от сервера:\n\n' + response.message);
@@ -42,12 +42,16 @@ btn.addEventListener('click', function (ev) {
     }
 
     alert(response.text);
-    
+
     document.querySelector('#word').value = '';
     rebootLangValue('#startLang');
     rebootLangValue('#endLang');
-  }
+  };
 
-  req.open('get', url);
-  req.send();
+  if (word != '') {
+    req.open('get', url);
+    req.send();
+  } else {
+    alert('Вы ничего не ввели!');
+  }
 });
