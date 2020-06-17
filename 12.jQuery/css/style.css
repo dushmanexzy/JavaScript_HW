@@ -16,3 +16,24 @@
   width: 100px;
   height: 100px;
 }
+
+.score {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+
+  width: 200px;
+
+  margin: 0;
+  padding: 20px 10px;
+
+  text-align: center;
+  font-size: 72px;
+  font-weight: 700;
+  color: white;
+
+  opacity: 0.8;
+
+  background-color: transparent;
+}
