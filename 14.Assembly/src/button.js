@@ -3,7 +3,7 @@
 export default function button() {
   const btn = document.createElement('button');
 
-  btn.innerHTML = 'BUTTON';
+  btn.innerHTML = 'Click me!';
 
   return btn;
 }
