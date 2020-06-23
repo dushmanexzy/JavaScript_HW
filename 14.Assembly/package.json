@@ -1,5 +1,5 @@
 {
-  "name": "button",
+  "name": "button_app_for_publish",
   "version": "1.0.0",
   "description": "assembly project with webpack",
   "main": "index.js",
