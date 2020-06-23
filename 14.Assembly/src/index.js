@@ -1,3 +1,4 @@
+import './button.css';
 import button from './button';
 
 document.body.appendChild(button());

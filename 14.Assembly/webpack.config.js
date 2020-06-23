@@ -1,22 +1,37 @@
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = [{
+module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'build.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, './build'),
+    filename: 'build.js'
   },
 
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: extractCSS.extract(['css-loader', 'postcss-loader'])
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use:
+        {
+          loader: 'babel-loader',
+        }
+      },
+
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract(
+          {
+            fallback: 'style-loader',
+            use: ['css-loader']
+          }
+        )
+      }
+    ]
   },
   plugins: [
-    extractCSS
+    new ExtractTextPlugin({ filename: 'build.css' })
   ]
-}];
+};
