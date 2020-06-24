@@ -1,7 +1,7 @@
 "use strict";
 
 export default function button() {
-  const btn = document.createElement('button');
+  let btn = document.createElement('button');
 
   btn.innerHTML = 'Click me!';
 
