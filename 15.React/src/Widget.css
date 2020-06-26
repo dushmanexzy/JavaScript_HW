@@ -1,0 +1,10 @@
+.comment__list {
+  list-style: none;
+
+  border: 2px solid grey;
+}
+
+.comment__item {
+  color: red;
+  text-decoration: underline;
+}
