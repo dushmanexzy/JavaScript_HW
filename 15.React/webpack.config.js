@@ -10,28 +10,26 @@ module.exports = {
   },
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        use:
-        {
+        use: {
           loader: 'babel-loader',
         }
       },
 
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract(
-          {
-            fallback: 'style-loader',
-            use: ['css-loader']
-          }
-        )
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader']
+        })
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({ filename: 'build.css' })
+    new ExtractTextPlugin({
+      filename: 'build.css'
+    })
   ]
 };

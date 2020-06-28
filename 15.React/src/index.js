@@ -1,109 +1,162 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDom from 'react-dom';
 
-class CommentWidget extends React.Component {
+import './Widget.css';
+
+class Widget extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      comments: [],
-      commentText: ''
-    };
+    const fromStorage = JSON.parse(localStorage.getItem('comments'));
+
+    if (fromStorage !== null) {
+      this.state = {
+        comments: fromStorage,
+        newAuthor: '',
+        newText: ''
+      }
+    } else {
+      this.state = {
+        comments: [],
+        newAuthor: '',
+        newText: ''
+      }
+    }
+
+    const saveComments = JSON.stringify(this.state.comments);
+    localStorage.setItem('comments', saveComments);
+  }
+
+  addToStorage() {
+    const saveComments = JSON.stringify(this.state.comments);
+    localStorage.setItem('comments', saveComments);
+  }
+
+  removeFromStorage(i) {
+    const saveComments = JSON.parse(localStorage.getItem('comments'));
+    
+    saveComments.splice(i, 1);
+
+    let comments = JSON.stringify(saveComments);
+
+    localStorage.setItem('comments', comments);
   }
 
   addComment() {
     const comments = this.state.comments;
+
     const date = new Date();
 
-    const newDate = [date.getDate(), date.getMonth(), date.getFullYear()].join('-');
-    const newTime = [date.getHours(), date.getMinutes(), date.getSeconds()].join(':');
     comments.push({
       author: this.state.newAuthor,
-      text: this.state.newCommentText,
-      date: newDate,
-      time: newTime
-    });
+      text: this.state.newText,
+      date: [date.getFullYear(), date.getMonth(), date.getDate()].join('-'),
+      time: [date.getHours(), date.getMinutes()].join(':')
+    })
+
+    this.addToStorage();
 
     this.setState({
       comments,
       newAuthor: '',
-      newCommentText: '',
-      newDate: '',
-      newTime: ''
-    });
+      newText: ''
+    })
   }
 
-  removeComment(key) {
-    const comments = this.state.comments.filter((key, i) => { i !== key })
+  deleteComment(i) {
+    const comments = this.state.comments;
+
+    comments.splice(i, 1);
+
+    this.removeFromStorage(i);
 
     this.setState({
       comments
     })
   }
 
-
   render() {
     return (
-      <div>
-        <ul>
-          {
-            this.state.comments.map((comment, i) => {
+      <>
+        <h2 className="comments__title">Comments List</h2>
+        <ul className="comments__list">
+          {this.state.comments.map((comment, i) => {
+            if (comment) {
               return (
-                <li key={i}>
-                  <p>`{comment.author}: {comment.text} {comment.date} {comment.time}`</p>
+                <li key={i} className="comments__item">
+                  <div className="comment__block">
+                    <p className="item__author">{comment.author}</p>
+                    <p className="item__text">{comment.text}</p>
+                    <p className="item__date">{comment.date}&nbsp;
+                      <span className="item__date--time">{comment.time}</span>
+                    </p>
+                  </div>
+
                   <button
-                    className="remove__btn"
+                    className="delComment-btn"
                     type="button"
-                    onClick={evt => {
-                      evt.preventDefault()
-                      this.removeComment();
-                    }}
-                  >Remove</button>
+                    onClick={
+                      evt => {
+                        evt.preventDefault()
+                        this.deleteComment(i);
+                      }
+                    }>X</button>
                 </li>
               )
-            })
-          }
+            }
+          })}
         </ul>
 
-        <form>
-          <label>Input name
+        <form className="comments__form">
+          <div className="input__block">
+            <label className="author-label" htmlFor="name">Введите ваше имя:
             <input
-              type="text"
-              placeholder="Input your name"
-              value={this.state.author}
-              onCange={evt => {
-                this.setState({ newAuthor: evt.target.value })
-              }}
-            />
-          </label>
-
-          <label>Input comment
-            <input
-              type="text"
-              placeholder="Input new comment"
-              value={this.state.text}
-              onCange={evt => {
-                this.setState({ newCommentText: evt.target.value })
-              }}
-              onKeyUp={evt => {
-                if (evt.keyCode === 13) {
-                  this.addComment();
+                id="name"
+                type="text"
+                placeholder="Input your name"
+                value={
+                  this.state.newAuthor
                 }
-              }}
-            />
-          </label>
+                onChange={
+                  evt => {
+                    this.setState({
+                      newAuthor: evt.target.value
+                    })
+                  }
+                } />
+            </label>
+            <label className="text-label" htmlFor="text">Введите комментарий:
+              <textarea
+                id="text"
+                type="text"
+                placeholder="Input your comment"
+                value={
+                  this.state.newText
+                }
+                onChange={
+                  evt => {
+                    this.setState({
+                      newText: evt.target.value
+                    })
+                  }
+                }></textarea>
+
+            </label>
+          </div>
+
           <button
-            className="submit__btn"
+            className="addComment-btn"
             type="submit"
-            onClick={evt => {
-              evt.preventDefault()
-              this.addComment();
-            }}
-          >Add</button>
+            onClick={
+              evt => {
+                evt.preventDefault();
+                this.addComment();
+              }
+            }>Add Comment</button>
         </form>
-      </div>
-    );
+      </>
+    )
   }
 }
 
-ReactDOM.render(<CommentWidget />, document.getElementById("app"));
+ReactDom.render(<Widget />, document.getElementById('app'));
