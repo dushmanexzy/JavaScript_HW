@@ -1,6 +1,6 @@
 const comments = (state, action) => {
   switch (action.type) {
-    case 'ADD_NEW_COMMENT':
+    case 'ADD_COMMENT':
       return [
         ...state,
         {
