@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import Comment from './Comment';
+import InputForm from './Input';
 
 import './Widget.css';
 
@@ -34,7 +36,7 @@ class Widget extends React.Component {
 
   removeFromStorage(i) {
     const saveComments = JSON.parse(localStorage.getItem('comments'));
-    
+
     saveComments.splice(i, 1);
 
     let comments = JSON.stringify(saveComments);
@@ -79,81 +81,30 @@ class Widget extends React.Component {
     return (
       <>
         <h2 className="comments__title">Comments List</h2>
+        
         <ul className="comments__list">
           {this.state.comments.map((comment, i) => {
             if (comment) {
               return (
-                <li key={i} className="comments__item">
-                  <div className="comment__block">
-                    <p className="item__author">{comment.author}</p>
-                    <p className="item__text">{comment.text}</p>
-                    <p className="item__date">{comment.date}&nbsp;
-                      <span className="item__date--time">{comment.time}</span>
-                    </p>
-                  </div>
-
-                  <button
-                    className="delComment-btn"
-                    type="button"
-                    onClick={
-                      evt => {
-                        evt.preventDefault()
-                        this.deleteComment(i);
-                      }
-                    }>X</button>
-                </li>
-              )
+                <Comment
+                  key={i}
+                  author={comment.author}
+                  text={comment.text}
+                  date={comment.date}
+                  time={comment.time}
+                  deleteComment={this.deleteComment.bind(this, i)}
+                />
+              );
             }
           })}
         </ul>
 
-        <form className="comments__form">
-          <div className="input__block">
-            <label className="author-label" htmlFor="name">Введите ваше имя:
-            <input
-                id="name"
-                type="text"
-                placeholder="Input your name"
-                value={
-                  this.state.newAuthor
-                }
-                onChange={
-                  evt => {
-                    this.setState({
-                      newAuthor: evt.target.value
-                    })
-                  }
-                } />
-            </label>
-            <label className="text-label" htmlFor="text">Введите комментарий:
-              <textarea
-                id="text"
-                type="text"
-                placeholder="Input your comment"
-                value={
-                  this.state.newText
-                }
-                onChange={
-                  evt => {
-                    this.setState({
-                      newText: evt.target.value
-                    })
-                  }
-                }></textarea>
-
-            </label>
-          </div>
-
-          <button
-            className="addComment-btn"
-            type="submit"
-            onClick={
-              evt => {
-                evt.preventDefault();
-                this.addComment();
-              }
-            }>Add Comment</button>
-        </form>
+        <InputForm
+          newAuthor={this.state.newAuthor}
+          newText={this.state.newText}
+          addComment={this.addComment.bind(this)}
+          setState={this.setState.bind(this)}
+        />
       </>
     )
   }

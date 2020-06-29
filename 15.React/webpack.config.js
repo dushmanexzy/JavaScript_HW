@@ -30,7 +30,7 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: './build',
+    contentBase: './',
     port: 10000
   },
 
