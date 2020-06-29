@@ -1,0 +1,155 @@
+/* APP */
+
+#app {
+  margin: 0 auto;
+  padding: 10px 20px;
+
+  width: 1000px;
+
+  font-size: 24px;
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
+
+  border: 8px double #000;
+}
+
+.comments__title {
+  text-align: center;
+
+  font-size: 42px;
+  font-weight: 700;
+}
+
+/* LIST */
+
+.comments__list {
+  padding: 20px 40px;
+
+  list-style: none;
+
+  background-color: #888;
+
+  border: 2px solid red;
+}
+
+.comments__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-left: 20px;
+  padding-right: 40px;
+
+  text-align: left;
+
+  background-color: #fff;
+}
+
+.comments__item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.comment__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 90%;
+}
+
+.comment__block p {
+  display: inline-block;
+  max-width: 30%;
+}
+
+.item__author,
+.item__date {
+  font-size: 30px;
+  font-weight: 700;
+
+  text-decoration: underline;
+}
+
+.item__text {
+  font-size: 24px;
+  font-style: italic;
+
+  color: #666;
+}
+
+.item__date {
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.delComment-btn {
+  font-size: 28px;
+  font-weight: 700;
+  background-color: #fff;
+
+  color: red;
+}
+
+
+/* FORM */
+
+.comments__form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+
+  border: 2px solid grey;
+
+  font-size: 20px;
+}
+
+.input__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.input__block label {
+  text-decoration: underline;
+}
+
+.input__block label:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.input__block input {
+  margin-left: 40px;
+  padding: 5px 10px;
+
+  border: 1px solid black;
+}
+
+.input__block input:placeholder-shown,
+.input__block textarea:placeholder-shown {
+  font-style: italic;
+}
+
+.input__block textarea {
+  margin-left: 7px;
+  padding: 5px 10px;
+
+  border: 1px solid black;
+}
+
+.input__block textarea:placeholder-shown {
+  font-style: italic;
+}
+
+.addComment-btn {
+  align-self: flex-end;
+
+  font-size: 28px;
+  line-height: 28px;
+
+  background-color: #fff;
+
+}
