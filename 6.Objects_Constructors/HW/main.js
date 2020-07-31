@@ -33,21 +33,33 @@ function UserList(obj) {
 function regNewUser() {
   let fullName = prompt('Введите ваши имя и фамилию через пробел', 'Андрей Дворцов');
 
+  // проверка на нажатие пользователем "отмена"
   if (fullName === null) {
     usersList.getAllUsers();
     return;
-  } else if (fullName.trim() == '') {
+  } 
+  // проверка на пустой ввод или ввод пробелов
+  else if (fullName.trim() == '') {
     return regNewUser();
   } else {
     let userInfo = fullName.trim().split(' ');
     let user = new User(userInfo[0], userInfo[1], printDayInfo());
 
-    usersList.usersAdd(user);
-
+    // проверка на дублирование пользователя
+    let users = usersList.users;
+    for (let i = 0; i < users.length; i++) {
+      console.log(userInfo[0]);
+      console.log(users[i].firstName);
+      if (users[i].firstName == userInfo[0] && users[i].lastName == userInfo[1]) {
+        alert('User already registred');
+      } else {
+        usersList.usersAdd(user);
+      };
+    }
     return regNewUser();
   };
 };
 
 let usersList = new UserList();
-
+console.log(usersList);
 regNewUser();
